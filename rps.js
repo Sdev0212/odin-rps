@@ -46,11 +46,41 @@ function playRound() {
     } else if(playerChoice=="rock"&&computerChoice=="Rock"){
         result = "Draw!";
         action = "Same choice";
-        winner = "player";
+        winner = "none";
         return [result, action, winner];
     }  else if(playerChoice=="rock"&&computerChoice=="Paper"){
         result = "You lose!";
         action = "Paper beats Rock";
+        winner = "computer";
+        return [result, action, winner];
+    } else if(playerChoice=="paper"&&computerChoice=="Scissors"){
+        result = "You lose!";
+        action = "scissors beats paper";
+        winner = "computer";
+        return [result, action, winner];
+    } else if(playerChoice=="paper"&&computerChoice=="Rock"){
+        result = "You Win!";
+        action = "Paper beats rock";
+        winner = "player";
+        return [result, action, winner];
+    }  else if(playerChoice=="paper"&&computerChoice=="Paper"){
+        result = "Draw!";
+        action = "Same choice";
+        winner = "none";
+        return [result, action, winner];
+    } else if(playerChoice=="scissors"&&computerChoice=="Scissors"){
+        result = "Draw!";
+        action = "Same choice";
+        winner = "none";
+        return [result, action, winner];
+    } else if(playerChoice=="scissors"&&computerChoice=="Rock"){
+        result = "You lose!";
+        action = "Rock beats scissors";
+        winner = "computer";
+        return [result, action, winner];
+    }  else if(playerChoice=="scissors"&&computerChoice=="Paper"){
+        result = "You Win!";
+        action = "Scissors beats paper";
         winner = "player";
         return [result, action, winner];
     }
