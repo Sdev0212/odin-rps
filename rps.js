@@ -21,69 +21,73 @@ function getComputerChoice() {
     return computerChoice
 }
 
-function getPlayerChoice() {
+
+function playRound() {
     let playerChoiceRaw = prompt("please type rock paper or scissors");
     if(playerChoiceRaw==null){
         playerChoiceRaw = "invalid";
     }
     let playerChoice = playerChoiceRaw.toLowerCase();
-    return playerChoice;
-}
-
-function playRound() {
-    let playerChoice = getPlayerChoice();
     let computerChoice = getComputerChoice();
+
     if(playerChoice!="rock"&&playerChoice!="paper"&&playerChoice!="scissors") {
         result = "You lose!";
         action = "Didn't pick a valid option";
         winner = "computer";
-        return [result, action, winner];
     } else if(playerChoice=="rock"&&computerChoice=="Scissors"){
         result = "You win!";
         action = "Rock beats Scissors";
         winner = "player";
-        return [result, action, winner];
     } else if(playerChoice=="rock"&&computerChoice=="Rock"){
         result = "Draw!";
         action = "Same choice";
         winner = "none";
-        return [result, action, winner];
     }  else if(playerChoice=="rock"&&computerChoice=="Paper"){
         result = "You lose!";
         action = "Paper beats Rock";
         winner = "computer";
-        return [result, action, winner];
     } else if(playerChoice=="paper"&&computerChoice=="Scissors"){
         result = "You lose!";
         action = "scissors beats paper";
         winner = "computer";
-        return [result, action, winner];
     } else if(playerChoice=="paper"&&computerChoice=="Rock"){
         result = "You Win!";
         action = "Paper beats rock";
         winner = "player";
-        return [result, action, winner];
     }  else if(playerChoice=="paper"&&computerChoice=="Paper"){
         result = "Draw!";
         action = "Same choice";
         winner = "none";
-        return [result, action, winner];
     } else if(playerChoice=="scissors"&&computerChoice=="Scissors"){
         result = "Draw!";
         action = "Same choice";
         winner = "none";
-        return [result, action, winner];
     } else if(playerChoice=="scissors"&&computerChoice=="Rock"){
         result = "You lose!";
         action = "Rock beats scissors";
         winner = "computer";
-        return [result, action, winner];
     }  else if(playerChoice=="scissors"&&computerChoice=="Paper"){
         result = "You Win!";
         action = "Scissors beats paper";
         winner = "player";
-        return [result, action, winner];
+    }
+    return [result, action, winner];
+}
+
+function game() {
+    let computerPoints = 0;
+    let playerPoints = 0;
+    for(let i = 0; i < 5; i++) {
+        let roundOutput = playRound();
+        if(roundOutput[2]=="player"){
+            playerPoints++;
+        }
+        else if(roundOutput[2]=="computer") {
+            computerPoints ++;
+        }
+        return [playerPoints, computerPoints];
     }
 }
 
-console.log(playRound())
+
+console.log(game())
