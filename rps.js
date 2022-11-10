@@ -25,16 +25,12 @@ function getComputerChoice() {
 function playRound() {
     let playerChoiceRaw = prompt("please type rock paper or scissors");
     if(playerChoiceRaw==null){
-        playerChoiceRaw = "invalid";
+        playerChoiceRaw = "invalid"; //removes unexpected null
     }
-    let playerChoice = playerChoiceRaw.toLowerCase();
+    let playerChoice = playerChoiceRaw.toLowerCase(); //makes input case insensitive
     let computerChoice = getComputerChoice();
 
-    if(playerChoice!="rock"&&playerChoice!="paper"&&playerChoice!="scissors") {
-        result = "You lose!";
-        action = "Didn't pick a valid option";
-        winner = "computer";
-    } else if(playerChoice == computerChoice) {
+    if(playerChoice == computerChoice) {
         result = "Draw!";
         action = "You picked the same option";
         winner = "none";
@@ -62,6 +58,10 @@ function playRound() {
         result = "You Win!";
         action = "Scissors beats paper";
         winner = "player";
+    } else {
+        result = "You lose!";
+        action = "Didn't pick a valid option";
+        winner = "computer";
     }
     console.log(result, action);
     return [result, action, winner];
