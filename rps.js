@@ -71,6 +71,7 @@ function playRound() {
         action = "Scissors beats paper";
         winner = "player";
     }
+    console.log(result, action);
     return [result, action, winner];
 }
 
@@ -85,8 +86,17 @@ function game() {
         else if(roundOutput[2]=="computer") {
             computerPoints ++;
         }
-        return [playerPoints, computerPoints];
+        console.log(`Round ${i+1}: Player ${playerPoints} - ${computerPoints} Computer`)
     }
+    if(playerPoints>computerPoints) {
+        outcome = "You're the winner";
+    } else if(computerPoints>playerPoints) {
+        outcome = "You lost the game";
+    } else if(playerPoints == computerPoints) {
+        outcome = "It's a Draw this time";
+    }
+    console.log(`Final Score: Player ${playerPoints} - ${computerPoints} Computer`);
+    return outcome;
 }
 
 
