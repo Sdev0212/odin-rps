@@ -10,13 +10,13 @@ function getComputerChoice() {
     let rndNumber = Math.floor(Math.random()*3); //generates a random integer from 0 to 2 (0, 1 or 2)
     switch(rndNumber) {                          //changes the random integer into a string
         case 0:
-            computerChoice = "Rock";
+            computerChoice = "rock";
             break;
         case 1:
-            computerChoice = "Scissors";
+            computerChoice = "scissors";
             break;
         case 2:
-            computerChoice = "Paper";
+            computerChoice = "paper";
     }
     return computerChoice
 }
@@ -34,39 +34,31 @@ function playRound() {
         result = "You lose!";
         action = "Didn't pick a valid option";
         winner = "computer";
-    } else if(playerChoice=="rock"&&computerChoice=="Scissors"){
+    } else if(playerChoice == computerChoice) {
+        result = "Draw!";
+        action = "You picked the same option";
+        winner = "none";
+    } else if(playerChoice=="rock"&&computerChoice=="scissors"){
         result = "You win!";
         action = "Rock beats Scissors";
         winner = "player";
-    } else if(playerChoice=="rock"&&computerChoice=="Rock"){
-        result = "Draw!";
-        action = "Same choice";
-        winner = "none";
-    }  else if(playerChoice=="rock"&&computerChoice=="Paper"){
+    }  else if(playerChoice=="rock"&&computerChoice=="paper"){
         result = "You lose!";
         action = "Paper beats Rock";
         winner = "computer";
-    } else if(playerChoice=="paper"&&computerChoice=="Scissors"){
+    } else if(playerChoice=="paper"&&computerChoice=="scissors"){
         result = "You lose!";
         action = "scissors beats paper";
         winner = "computer";
-    } else if(playerChoice=="paper"&&computerChoice=="Rock"){
+    } else if(playerChoice=="paper"&&computerChoice=="rock"){
         result = "You Win!";
         action = "Paper beats rock";
         winner = "player";
-    }  else if(playerChoice=="paper"&&computerChoice=="Paper"){
-        result = "Draw!";
-        action = "Same choice";
-        winner = "none";
-    } else if(playerChoice=="scissors"&&computerChoice=="Scissors"){
-        result = "Draw!";
-        action = "Same choice";
-        winner = "none";
-    } else if(playerChoice=="scissors"&&computerChoice=="Rock"){
+    } else if(playerChoice=="scissors"&&computerChoice=="rock"){
         result = "You lose!";
         action = "Rock beats scissors";
         winner = "computer";
-    }  else if(playerChoice=="scissors"&&computerChoice=="Paper"){
+    }  else if(playerChoice=="scissors"&&computerChoice=="paper"){
         result = "You Win!";
         action = "Scissors beats paper";
         winner = "player";
@@ -91,9 +83,9 @@ function game() {
     if(playerPoints>computerPoints) {
         outcome = "You're the winner";
     } else if(computerPoints>playerPoints) {
-        outcome = "You lost the game";
+        outcome = "You lost this game";
     } else if(playerPoints == computerPoints) {
-        outcome = "It's a Draw this time";
+        outcome = "It's a tie this time";
     }
     console.log(`Final Score: Player ${playerPoints} - ${computerPoints} Computer`);
     return outcome;
