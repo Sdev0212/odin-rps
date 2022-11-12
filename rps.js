@@ -1,10 +1,28 @@
 let computerChoice = "";
 
+let playerPoints = 0;
+
+let computerPoints = 0;
+
+let roundNumber = 0;
+
+let playerChoice;
+
 let result;
 
 let action;
 
 let winner;
+
+const player = document.querySelector("#playerScore");
+player.textContent = `Player Score: ${playerPoints}`;
+
+const computer = document.querySelector("#computerScore");
+computer.textContent = `Computer Score: ${computerPoints}`;
+
+const gameText = document.querySelector("#gameText");
+gameText.textContent = "Welcome to the game, pick rock paper or scissors:"
+
 
 function getComputerChoice() {
     let rndNumber = Math.floor(Math.random()*3); //generates a random integer from 0 to 2 (0, 1 or 2)
@@ -21,15 +39,20 @@ function getComputerChoice() {
     return computerChoice
 }
 
+//get player choice function
+
+const choices = document.querySelectorAll('button');
+
+choices.forEach((choice)=>{
+    choice.addEventListener('click', ()=>{
+        playerChoice = choice.id;
+        computerChoice = getComputerChoice();
+        playGame();
+    })
+})
+
 
 function playRound() {
-    let playerChoiceRaw = prompt("please type rock paper or scissors");
-    if(playerChoiceRaw==null){
-        playerChoiceRaw = "invalid"; //removes unexpected null
-    }
-    let playerChoice = playerChoiceRaw.toLowerCase(); //makes input case insensitive
-    let computerChoice = getComputerChoice();
-
     if(playerChoice == computerChoice) {
         result = "Draw!";
         action = "You picked the same option";
@@ -58,38 +81,22 @@ function playRound() {
         result = "You Win!";
         action = "Scissors beats paper";
         winner = "player";
-    } else {
-        result = "You lose!";
-        action = "Didn't pick a valid option";
-        winner = "computer";
     }
     console.log(result, action);
-    return [result, action, winner];
+    return winner;
 }
 
-function game() {
-    let computerPoints = 0;
-    let playerPoints = 0;
-    for(let i = 0; i < 5; i++) {
-        let roundOutput = playRound();
-        if(roundOutput[2]=="player"){
-            playerPoints++;
-        }
-        else if(roundOutput[2]=="computer") {
-            computerPoints ++;
-        }
-        console.log(`Round ${i+1}: Player ${playerPoints} - ${computerPoints} Computer`)
-    }
-    if(playerPoints>computerPoints) {
-        outcome = "You're the winner";
-    } else if(computerPoints>playerPoints) {
-        outcome = "You lost this game";
-    } else if(playerPoints == computerPoints) {
-        outcome = "It's a tie this time";
-    }
-    console.log(`Final Score: Player ${playerPoints} - ${computerPoints} Computer`);
-    return outcome;
+function playGame() {
+    playRound();
+    if(winner == "player"){
+        playerPoints++;
+        roundNumber++;
+    }else if(winner == "computer"){
+        computerPoints++;
+        roundNumber++;
+    } else roundNumber++;
+    
+    player.textContent = `Player Score: ${playerPoints}`;
+    computer.textContent = `Computer Score: ${computerPoints}`;
+    gameText.textContent = `${result} Round ${roundNumber}`;
 }
-
-
-console.log(game())
