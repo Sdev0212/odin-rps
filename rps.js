@@ -48,6 +48,17 @@ choices.forEach((choice)=>{
         playerChoice = choice.id;
         computerChoice = getComputerChoice();
         playGame();
+        if(computerPoints>=5){
+        gameText.textContent = `Computer wins! Better luck next time`;
+        playerPoints = 0;
+        computerPoints = 0;
+        roundNumber = 0;
+        } else if(playerPoints>=5){
+        gameText.textContent = `You win! Congratulations!`;
+        playerPoints = 0;
+        computerPoints = 0;
+        roundNumber = 0;
+        }
     })
 })
 
