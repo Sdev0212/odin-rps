@@ -67,7 +67,7 @@ function playRound() {
         winner = "computer";
     } else if(playerChoice=="paper"&&computerChoice=="scissors"){
         result = "You lose!";
-        action = "scissors beats paper";
+        action = "Scissors beats paper";
         winner = "computer";
     } else if(playerChoice=="paper"&&computerChoice=="rock"){
         result = "You Win!";
@@ -98,5 +98,5 @@ function playGame() {
     
     player.textContent = `Player Score: ${playerPoints}`;
     computer.textContent = `Computer Score: ${computerPoints}`;
-    gameText.textContent = `${result} Round ${roundNumber}`;
+    gameText.textContent = `${result} ${action} Round ${roundNumber}`;
 }
